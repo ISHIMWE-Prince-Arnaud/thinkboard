@@ -1,24 +1,22 @@
 {
-  "name": "backend",
+  "name": "think-board",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "npm start --prefix backend",
+    "build": "npm install --prefix backend && npm install --prefix frontend --include=dev && npm run build --prefix frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ISHIMWE-Prince-Arnaud/thinkboard.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
-    "express": "^4.18.2",
-    "mongoose": "^7.0.3",
-    "think-board": "file:.."
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ISHIMWE-Prince-Arnaud/thinkboard/issues"
   },
-  "devDependencies": {
-    "nodemon": "^3.1.10"
-  }
+  "homepage": "https://github.com/ISHIMWE-Prince-Arnaud/thinkboard#readme"
 }
