@@ -49,6 +49,11 @@ const Note = () => {
       toast.error("Please fill in all fields");
       return;
     }
+    if (note.title.length > 50) {
+      toast.error("Title is too long");
+      return;
+    }
+
 
     setSaving(true);
 

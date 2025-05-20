@@ -1,5 +1,3 @@
-import React from 'react';
-
 const NoteCardSkeleton = () => {
   return (
     <div className="card bg-base-100 shadow animate-pulse border-t-8 border-[#a3f7bf]">
