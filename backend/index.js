@@ -1,32 +1,33 @@
 import express from "express";
-import notesRoutes from "./src/routes/notesRoutes.js";
+import notesRoutes from "./src/routes/notes.route.js";
+import userRoutes from './src/routes/user.route.js';
 import { connectDB } from "./src/config/db.js";
 import dotenv from "dotenv";
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
-// ✅ Required for ES modules to emulate __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
 
-// ✅ CORS only in development
 if (process.env.NODE_ENV !== "production") {
   app.use(cors({
     origin: "http://localhost:5173",
-    credentials: true, // Optional if you're handling cookies or sessions
+    credentials: true,
   }));
 }
 
 app.use(express.json());
+app.use(cookieParser());
 
-// ✅ Mount API routes
 app.use("/notes", notesRoutes);
+app.use("/user", userRoutes);
 
 // ✅ Serve frontend in production
 if (process.env.NODE_ENV === "production") {
@@ -36,7 +37,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// ✅ Connect to DB and start server
 connectDB().then(() => {
   app.listen(process.env.PORT || 5001, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
