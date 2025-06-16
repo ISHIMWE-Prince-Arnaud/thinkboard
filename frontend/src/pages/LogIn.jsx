@@ -10,6 +10,7 @@ import {
   EyeOffIcon,
 } from "lucide-react";
 import { userApi } from "../utils/axios.js";
+import { useAuth } from "../components/AuthContext.jsx";
 
 const LogIn = () => {
   const [form, setForm] = useState({
@@ -20,6 +21,7 @@ const LogIn = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setForm((prev) => ({
@@ -39,8 +41,9 @@ const LogIn = () => {
     setLoading(true);
 
     try {
-      // Cookie is set in the backend on successful login
       await userApi.post("/login", form);
+      const { data } = await userApi.get("/profile");
+      login(data, "");
       toast.success("Logged in successfully!");
       navigate("/home");
     } catch (error) {

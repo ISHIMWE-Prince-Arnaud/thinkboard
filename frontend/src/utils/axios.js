@@ -12,12 +12,10 @@ export const notesApi = axios.create({
   withCredentials: true,
 });
 
-[userApi, notesApi].forEach((api) => {
-  api.interceptors.request.use((config) => {
-    const token = localStorage.getItem("authToken"); // optional: useful for extra checks
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
+export function formatDate(date) {
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
   });
-});
+}

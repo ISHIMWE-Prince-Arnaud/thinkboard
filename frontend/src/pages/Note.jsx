@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { notesApi } from "../utils/axios";
 import toast from "react-hot-toast";
 import { LoaderIcon, ArrowLeftIcon, Trash2Icon } from "lucide-react";
@@ -37,7 +37,7 @@ const Note = () => {
       try {
         await notesApi.delete(`/delete/${id}`);
         toast.success("Note deleted successfully");
-        navigate("/");
+        navigate("/home");
       } catch (error) {
         console.error("Error deleting note", error);
         toast.error("Failed to delete note");
@@ -64,7 +64,7 @@ const Note = () => {
         content: note.content,
       });
       toast.success("Note updated successfully");
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.error("Error updating note", error);
       toast.error("Failed to update note");
@@ -195,15 +195,15 @@ const Note = () => {
           </div>
 
           <div className="card-actions flex justify-between">
-            <motion.Link
-              to="/"
+            <Link
+              to="/home"
               className="btn btn-error w-32"
               aria-label="Cancel editing"
               whileTap={buttonTap}
               whileHover={{ scale: 1.05 }}
             >
               Cancel
-            </motion.Link>
+            </Link>
             <motion.button
               type="submit"
               className="btn btn-primary"

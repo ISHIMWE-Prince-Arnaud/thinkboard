@@ -44,7 +44,10 @@ export async function login(req, res) {
 
     if (user && (await user.matchPassword(password))) {
       await generateToken(res, user._id);
-      return res.json("User logged in successfully");
+      return res.json({
+        message: "User logged in successfully",
+        user: { _id: user._id, username: user.username, email: user.email, avatar: user.avatar },
+      });
     } else {
       return res.status(400).json("Invalid email or password");
     }
@@ -54,48 +57,48 @@ export async function login(req, res) {
   }
 }
 
-export async function logout(req,res) {
-          try {
-                    res.cookie('jwt', '', {
-                              httpOnly: true,
-                              secure: process.env.NODE_ENV !== 'development',
-                              sameSite: 'strict',
-                              maxAge: 0
-                    })
-                    res.json("User logged out successfully");
-          } catch (error) {
-                  res.status(500).json("Internal server error");
-                  console.log(error);  
-          }
+export async function logout(req, res) {
+  try {
+    res.cookie('jwt', '', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== 'development',
+      sameSite: 'strict',
+      maxAge: 0,
+    });
+    res.json("User logged out successfully");
+  } catch (error) {
+    res.status(500).json("Internal server error");
+    console.log(error);
+  }
 }
 
-export async function profile(req,res) {
-          try {
-                    const userId = req.user._id;
-                    const user = await User.findById(userId);
-                    res.json(user);
-          } catch (error) {
-                  res.status(500).json("Internal server error");
-                  console.log(error);  
-          }
+export async function profile(req, res) {
+  try {
+    const userId = req.user._id;
+    const user = await User.findById(userId);
+    res.json(user);
+  } catch (error) {
+    res.status(500).json("Internal server error");
+    console.log(error);
+  }
 }
 
-export async function updateProfile(req,res) {
-          try {
-                    const userId = req.user._id;
-                    const user = await User.findById(userId);
-                    if(!user){
-                              return res.json("User not found");
-                    }
-                    user.username = req.body.username || user.username;
-                    user.email = req.body.email || user.email;
-                    if(req.body.password){
-                              user.password = req.body.password;
-                    }
-                    const updatedUser = await user.save();
-                    res.json(updatedUser);
-          } catch (error) {
-                    res.status(500).json("Internal server error");
-                    console.log(error);
-          }
+export async function updateProfile(req, res) {
+  try {
+    const userId = req.user._id;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.json("User not found");
+    }
+    user.username = req.body.username || user.username;
+    user.email = req.body.email || user.email;
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+    const updatedUser = await user.save();
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(500).json("Internal server error");
+    console.log(error);
+  }
 }

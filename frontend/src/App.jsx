@@ -6,7 +6,7 @@ import Welcome from './pages/Welcome';
 import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
-import ProtectedRoutes from './components/ProtectedRoutes';
+import ProtectedRoutes from './components/protectedRoutes';
 
 const App = () => {
   return (

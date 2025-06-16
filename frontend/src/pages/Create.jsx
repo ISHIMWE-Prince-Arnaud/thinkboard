@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from 'lucide-react'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { Link, useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router-dom'
 import { notesApi } from '../utils/axios'
 import { motion } from 'framer-motion'
 
@@ -31,7 +31,7 @@ const Create = () => {
     try {
       await notesApi.post('/create', { title, content })
       toast.success('Note created successfully')
-      navigate('/')
+      navigate('/home')
     } catch (error) {
       console.error('Error creating note', error)
       toast.error('Failed to create note')

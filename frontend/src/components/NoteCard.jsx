@@ -39,7 +39,7 @@ const NoteCard = ({ note, setNotes }) => {
         </span>
         <div className="flex items-center gap-2">
           <Link
-            to={`/edit/${note._id}`}
+            to={`/note/${note._id}`}
             className="btn btn-ghost btn-xs"
             aria-label="Edit note"
             title="Edit note"

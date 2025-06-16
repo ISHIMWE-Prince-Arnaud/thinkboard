@@ -1,5 +1,5 @@
 import { FileWarningIcon } from 'lucide-react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 const NotesNotFound = () => {

@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-base-300 border-b border-base-content/10 shadow-sm">
-      <div className="mx-auto max-w-6xl p-4">
+      <div className="mx-auto p-4">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold text-primary font-mono tracking-tighter">
             ThinkBoard
@@ -33,7 +33,7 @@ const Navbar = () => {
                 </motion.div>
                 <button
                   onClick={logout}
-                  className="btn btn-sm btn-error hidden sm:inline-block"
+                  className="btn btn-error hidden sm:inline-block"
                 >
                   Logout
                 </button>
