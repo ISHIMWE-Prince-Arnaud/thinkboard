@@ -10,9 +10,9 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 bg-base-300 border-b border-base-content/10 shadow-sm">
       <div className="mx-auto p-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-primary font-mono tracking-tighter">
+          <Link to="/home" className="text-3xl font-bold text-primary font-mono tracking-tighter">
             ThinkBoard
-          </h1>
+          </Link>
 
           <div className="flex items-center gap-4">
             {user && (
@@ -24,7 +24,7 @@ const Navbar = () => {
                 >
                   <Link
                     to="/create"
-                    className="btn btn-primary flex items-center gap-2"
+                    className="btn btn-primary rounded-full flex items-center gap-2"
                     aria-label="Create a new note"
                   >
                     <PlusIcon className="w-5 h-5" />
@@ -33,10 +33,15 @@ const Navbar = () => {
                 </motion.div>
                 <button
                   onClick={logout}
-                  className="btn btn-error hidden sm:inline-block"
+                  className="btn btn-error hidden rounded-full sm:inline-block"
                 >
                   Logout
                 </button>
+                <Link to="/profile" className="hidden sm:inline-block">
+                  <span className="text-base-content/80 hover:text-base-content">
+                    <img src={user.avatar} alt="Profile picture" className="w-12 h-12 rounded-full" />
+                  </span>
+                </Link>
               </>
             )}
             {!user && (

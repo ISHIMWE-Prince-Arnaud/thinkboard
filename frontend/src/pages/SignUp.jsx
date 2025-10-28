@@ -140,7 +140,7 @@ const SignUp = () => {
             {/* Toggle button */}
             <button
               type="button"
-              className="absolute right-3 top-[38px] w-5 h-5 text-base-content/60"
+              className="absolute right-3 top-[60%] w-5 h-5 text-base-content/60"
               onClick={() => setShowPassword(!showPassword)}
               tabIndex={-1}
               aria-label={showPassword ? "Hide password" : "Show password"}
@@ -173,7 +173,7 @@ const SignUp = () => {
             {/* Toggle button */}
             <button
               type="button"
-              className="absolute right-3 top-[38px] w-5 h-5 text-base-content/60"
+              className="absolute right-3 top-[60%] w-5 h-5 text-base-content/60"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               tabIndex={-1}
               aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
